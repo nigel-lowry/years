@@ -9,7 +9,13 @@ describe Years do
     context "regular birthday" do
       let(:date_of_birth) { '22 Sep 1976'.to_date }
 
+      specify { Years.age(date_of_birth, '22 Sep 1976'.to_date).should == 0 }
       specify { Years.age(date_of_birth, '23 Sep 1976'.to_date).should == 0 }
+
+      specify { Years.age(date_of_birth, '21 Sep 1977'.to_date).should == 0 }
+      specify { Years.age(date_of_birth, '22 Sep 1977'.to_date).should == 1 }
+      specify { Years.age(date_of_birth, '23 Sep 1977'.to_date).should == 1 }
+
       specify { Years.age(date_of_birth, '21 Sep 1978'.to_date).should == 1 }
       specify { Years.age(date_of_birth, '22 Sep 1978'.to_date).should == 2 }
       specify { Years.age(date_of_birth, '23 Sep 1978'.to_date).should == 2 }
