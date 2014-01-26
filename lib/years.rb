@@ -7,8 +7,12 @@ module Years
   def self.age date_of_birth
     now = Date.today
     years = now.year - date_of_birth.year
-    years -= 1 if date_of_birth.years_since(years) > now
-    years
+
+    if date_of_birth.years_since(years) > now
+      years - 1
+    else
+      years
+    end
   end
 
   def self.range first_year, last_year=Time.now.year
