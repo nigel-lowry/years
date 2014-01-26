@@ -14,7 +14,7 @@ module Years
   def self.range first_year, last_year=Date.current.year
     raise if first_year > last_year
 
-    (last_year == first_year) ? first_year.to_s : first_year.to_s + @@EN_DASH + last_year.to_s
+    (first_year == last_year) ? first_year.to_s : first_year.to_s + @@EN_DASH + last_year.to_s
   end
 
 private
