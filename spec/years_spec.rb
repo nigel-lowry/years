@@ -20,5 +20,9 @@ describe Years do
 
     specify { Years.range(2011, 2013).should == '2011–2013' }
     specify { Years.range(2011, 2014).should == '2011–2014' }
+
+    it "raises error" do
+      expect { Years.range(2013, 2011) }.to raise_error
+    end
   end
 end
