@@ -9,29 +9,10 @@ describe Years do
     context "regular birthday" do
       let(:date_of_birth) { '22 Sep 1976'.to_date }
 
-      it "truncates age" do
-        Timecop.freeze '23 Sep 1976'.to_date do
-          Years.age(date_of_birth).should == 0
-        end
-      end
-
-      it "truncates age" do
-        Timecop.freeze '21 Sep 1978'.to_date do
-          Years.age(date_of_birth).should == 1
-        end
-      end
-
-      it "truncates age" do
-        Timecop.freeze '22 Sep 1978'.to_date do
-          Years.age(date_of_birth).should == 2
-        end
-      end
-
-      it "truncates age" do
-        Timecop.freeze '23 Sep 1978'.to_date do
-          Years.age(date_of_birth).should == 2
-        end
-      end
+      specify { Years.age(date_of_birth, '23 Sep 1976'.to_date).should == 0 }
+      specify { Years.age(date_of_birth, '21 Sep 1978'.to_date).should == 1 }
+      specify { Years.age(date_of_birth, '22 Sep 1978'.to_date).should == 2 }
+      specify { Years.age(date_of_birth, '23 Sep 1978'.to_date).should == 2 }
     end
 
     context "leap year birthday" do
