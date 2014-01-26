@@ -32,7 +32,7 @@ describe Years do
       specify { Years.age(date_of_birth, '28 Feb 2005'.to_date).should == 0 }
       specify { Years.age(date_of_birth, '1 Mar 2005'.to_date).should == 1 }
 
-      it "uses current date when given second argument" do
+      it "uses current date when second argument missing" do
         Timecop.freeze '1 Mar 2006'.to_date do
           Years.age(date_of_birth).should == 2
         end
