@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Years::VERSION
   spec.authors       = ["Nigel Lowry"]
   spec.email         = ["nigel-lowry@ultra.eclipse.co.uk"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Small gem for showing year ranges.}
+  spec.description   = %q{Small gem to create year ranges for copyright statements in Web pages.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
