@@ -29,11 +29,15 @@ private
   def self.birthday date_of_birth, years, legal_leapling_birthday
     bday = date_of_birth.years_since years
 
-    if february_29th?(date_of_birth) and legal_leapling_birthday == :mar1
+    if leapling?(date_of_birth) and legal_leapling_birthday == :mar1
       bday.tomorrow
     else
       bday
     end
+  end
+
+  def self.leapling? date
+    february_29th? date
   end
 
   def self.february_29th? date
