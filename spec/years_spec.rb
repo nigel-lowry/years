@@ -5,6 +5,34 @@ require 'years'
 
 describe Years do
 
+  describe ".age" do
+    let(:date_of_birth) { '22 Sep 1976'.to_date }
+
+    it "truncates age" do
+      Timecop.freeze '23 Sep 1976'.to_date do
+        Years.age(date_of_birth).should == 0
+      end
+    end
+
+    it "truncates age" do
+      Timecop.freeze '21 Sep 1978'.to_date do
+        Years.age(date_of_birth).should == 1
+      end
+    end
+
+    it "truncates age" do
+      Timecop.freeze '22 Sep 1978'.to_date do
+        Years.age(date_of_birth).should == 2
+      end
+    end
+
+    it "truncates age" do
+      Timecop.freeze '23 Sep 1978'.to_date do
+        Years.age(date_of_birth).should == 2
+      end
+    end
+  end
+
   describe ".range" do
     before do
       Timecop.freeze '26 Jan 2012'.to_date
