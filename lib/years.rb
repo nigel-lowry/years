@@ -1,5 +1,7 @@
 require "years/version"
 
 module Years
-  # Your code goes here...
+  def self.range year
+    year.to_s
+  end
 end
