@@ -4,9 +4,7 @@ module Years
 
   @@EN_DASH = '–'
 
-  def self.range first_year
-    last_year = Time.now.year
-
+  def self.range first_year, last_year=Time.now.year
     if last_year == first_year
       first_year.to_s
     else
