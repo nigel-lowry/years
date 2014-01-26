@@ -5,7 +5,7 @@ module Years
   @@EN_DASH = '–'
 
   def self.age date_of_birth
-    now = Date.today
+    now = Date.current
     years = now.year - date_of_birth.year
 
     if date_of_birth.years_since(years) > now
