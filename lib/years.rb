@@ -28,7 +28,6 @@ private
 
   def self.birthday date_of_birth, years, legal_leapling_birthday
     bday = date_of_birth.years_since years
-
     (leapling?(date_of_birth) and legal_leapling_birthday == :mar1) ? bday.tomorrow : bday
   end
 
