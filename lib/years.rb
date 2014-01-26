@@ -8,10 +8,18 @@ module Years
     now = Date.current
     years = now.year - date_of_birth.year
 
-    if date_of_birth.years_since(years) > now
-      years - 1
+    if february_29th? date_of_birth
+      if date_of_birth.years_since(years).tomorrow > now
+        years - 1
+      else
+        years
+      end
     else
-      years
+      if date_of_birth.years_since(years) > now
+        years - 1
+      else
+        years
+      end
     end
   end
 
@@ -20,4 +28,11 @@ module Years
 
     (last_year == first_year) ? first_year.to_s : first_year.to_s + @@EN_DASH + last_year.to_s
   end
+
+private
+
+  def self.february_29th? date
+    date.mday == 29 and date.mon == 2
+  end
+
 end

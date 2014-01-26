@@ -33,6 +33,28 @@ describe Years do
         end
       end
     end
+
+    context "leap year birthday" do
+      let(:date_of_birth) { '29 Feb 2004'.to_date }
+
+      it "truncates age" do
+        Timecop.freeze '1 Mar 2004'.to_date do
+          Years.age(date_of_birth).should == 0
+        end
+      end
+
+      it "truncates age" do
+        Timecop.freeze '28 Feb 2005'.to_date do
+          Years.age(date_of_birth).should == 0
+        end
+      end
+
+      it "truncates age" do
+        Timecop.freeze '1 Mar 2005'.to_date do
+          Years.age(date_of_birth).should == 1
+        end
+      end
+    end
   end
 
   describe ".range" do
