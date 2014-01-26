@@ -4,7 +4,6 @@ require 'active_support/all'
 require 'years'
 
 describe Years do
-
   describe ".age" do
     context "regular birthday" do
       let(:date_of_birth) { '22 Sep 1976'.to_date }
