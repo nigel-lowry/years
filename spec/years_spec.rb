@@ -66,9 +66,9 @@ describe Years do
       Timecop.return
     end
 
-    specify { Years.range(2012).should == '2012' }
-    specify { Years.range(2011).should == '2011–2012' }
     specify { Years.range(2010).should == '2010–2012' }
+    specify { Years.range(2011).should == '2011–2012' }
+    specify { Years.range(2012).should == '2012' }
 
     specify { Years.range(2011, 2011).should == '2011' }
     specify { Years.range(2011, 2012).should == '2011–2012' }
