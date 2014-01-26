@@ -14,8 +14,7 @@ describe Years do
       Timecop.return
     end
 
-    it "shows just one year if same year" do
-      Years.range(2012).should == '2012'
-    end
+    specify { Years.range(2012).should == '2012' }
+    specify { Years.range(2011).should == '2011–2012' }
   end
 end
