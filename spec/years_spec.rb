@@ -9,6 +9,10 @@ describe Years do
     context "regular birthday" do
       let(:date_of_birth) { '22 Sep 1976'.to_date }
 
+      it "raises error if not born yet" do
+        expect { Years.age(date_of_birth, '21 Sep 1976'.to_date) }.to raise_error
+      end
+
       specify { Years.age(date_of_birth, '22 Sep 1976'.to_date).should == 0 }
       specify { Years.age(date_of_birth, '23 Sep 1976'.to_date).should == 0 }
 
