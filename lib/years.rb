@@ -1,4 +1,4 @@
-require "years/version"
+require 'years/version'
 
 module Years
 
