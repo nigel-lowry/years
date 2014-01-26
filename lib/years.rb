@@ -3,11 +3,12 @@ require 'years/version'
 module Years
   @@EN_DASH = '–'
 
-  def self.age date_of_birth, today=Date.current
-    raise if today < date_of_birth
+  def self.age_where_leapling_legal_birthday_is_28_feb date_of_birth, today=Date.current
+    age date_of_birth, today, :feb28
+  end
 
-    years = today.year - date_of_birth.year
-    (birthday(date_of_birth, years) > today) ? years - 1 : years
+  def self.age_where_leapling_legal_birthday_is_1_mar date_of_birth, today=Date.current
+    age date_of_birth, today, :mar1
   end
 
   def self.range first_year, last_year=Date.current.year
@@ -18,10 +19,17 @@ module Years
 
 private
 
-  def self.birthday date_of_birth, years
+  def self.age date_of_birth, today, legal_leapling_birthday
+    raise if today < date_of_birth
+
+    years = today.year - date_of_birth.year
+    (birthday(date_of_birth, years, legal_leapling_birthday) > today) ? years - 1 : years
+  end
+
+  def self.birthday date_of_birth, years, legal_leapling_birthday
     bday = date_of_birth.years_since years
 
-    if february_29th? date_of_birth
+    if february_29th?(date_of_birth) and legal_leapling_birthday == :mar1
       bday.tomorrow
     else
       bday

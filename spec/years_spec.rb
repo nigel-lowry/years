@@ -4,28 +4,28 @@ require 'active_support/all'
 require 'years'
 
 describe Years do
-  describe ".age" do
+  describe ".age_where_leapling_legal_birthday_is_1_mar" do
     context "regular birthday" do
       let(:date_of_birth) { '22 Sep 1976'.to_date }
 
       it "raises error if not born yet" do
-        expect { Years.age(date_of_birth, '21 Sep 1976'.to_date) }.to raise_error
+        expect { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '21 Sep 1976'.to_date) }.to raise_error
       end
 
-      specify { Years.age(date_of_birth, '22 Sep 1976'.to_date).should == 0 }
-      specify { Years.age(date_of_birth, '23 Sep 1976'.to_date).should == 0 }
+      specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '22 Sep 1976'.to_date).should == 0 }
+      specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '23 Sep 1976'.to_date).should == 0 }
 
-      specify { Years.age(date_of_birth, '21 Sep 1977'.to_date).should == 0 }
-      specify { Years.age(date_of_birth, '22 Sep 1977'.to_date).should == 1 }
-      specify { Years.age(date_of_birth, '23 Sep 1977'.to_date).should == 1 }
+      specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '21 Sep 1977'.to_date).should == 0 }
+      specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '22 Sep 1977'.to_date).should == 1 }
+      specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '23 Sep 1977'.to_date).should == 1 }
 
-      specify { Years.age(date_of_birth, '21 Sep 1978'.to_date).should == 1 }
-      specify { Years.age(date_of_birth, '22 Sep 1978'.to_date).should == 2 }
-      specify { Years.age(date_of_birth, '23 Sep 1978'.to_date).should == 2 }
+      specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '21 Sep 1978'.to_date).should == 1 }
+      specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '22 Sep 1978'.to_date).should == 2 }
+      specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '23 Sep 1978'.to_date).should == 2 }
 
       it "uses current date when second argument missing" do
         Timecop.freeze '22 Sep 2006'.to_date do
-          Years.age(date_of_birth).should == 30
+          Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth).should == 30
         end
       end
     end
@@ -33,10 +33,15 @@ describe Years do
     context "leap year birthday" do
       let(:date_of_birth) { '29 Feb 2004'.to_date }
 
-      specify { Years.age(date_of_birth, '1 Mar 2004'.to_date).should == 0 }
-      specify { Years.age(date_of_birth, '28 Feb 2005'.to_date).should == 0 }
-      specify { Years.age(date_of_birth, '1 Mar 2005'.to_date).should == 1 }
+      specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '1 Mar 2004'.to_date).should == 0 }
+      specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '28 Feb 2005'.to_date).should == 0 }
+      specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '1 Mar 2005'.to_date).should == 1 }
     end
+  end
+
+  describe ".age_where_leapling_legal_birthday_is_28_feb" do
+    let(:date_of_birth) { '29 Feb 2004'.to_date }
+    specify { Years.age_where_leapling_legal_birthday_is_28_feb(date_of_birth, '28 Feb 2005'.to_date).should == 1 }
   end
 
   describe ".range" do
