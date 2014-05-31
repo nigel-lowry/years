@@ -12,8 +12,8 @@ describe Years do
         expect { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '21 Sep 1976'.to_date) }.to raise_error
       end
 
-      specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '22 Sep 1976'.to_date).should == 0 }
-      specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '23 Sep 1976'.to_date).should == 0 }
+      specify { expect(Years.age_where_leapling_legal_birthday_is_1_mar date_of_birth, '22 Sep 1976'.to_date).to eq 0 }
+      specify { expect(Years.age_where_leapling_legal_birthday_is_1_mar date_of_birth, '23 Sep 1976'.to_date).to eq 0 }
 
       specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '21 Sep 1977'.to_date).should == 0 }
       specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '22 Sep 1977'.to_date).should == 1 }
