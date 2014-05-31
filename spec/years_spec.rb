@@ -15,13 +15,13 @@ describe Years do
       specify { expect(Years.age_where_leapling_legal_birthday_is_1_mar date_of_birth, '22 Sep 1976'.to_date).to eq 0 }
       specify { expect(Years.age_where_leapling_legal_birthday_is_1_mar date_of_birth, '23 Sep 1976'.to_date).to eq 0 }
 
-      specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '21 Sep 1977'.to_date).should == 0 }
-      specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '22 Sep 1977'.to_date).should == 1 }
-      specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '23 Sep 1977'.to_date).should == 1 }
+      specify { expect(Years.age_where_leapling_legal_birthday_is_1_mar date_of_birth, '21 Sep 1977'.to_date).to eq 0 }
+      specify { expect(Years.age_where_leapling_legal_birthday_is_1_mar date_of_birth, '22 Sep 1977'.to_date).to eq 1 }
+      specify { expect(Years.age_where_leapling_legal_birthday_is_1_mar date_of_birth, '23 Sep 1977'.to_date).to eq 1 }
 
-      specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '21 Sep 1978'.to_date).should == 1 }
-      specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '22 Sep 1978'.to_date).should == 2 }
-      specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '23 Sep 1978'.to_date).should == 2 }
+      specify { expect(Years.age_where_leapling_legal_birthday_is_1_mar date_of_birth, '21 Sep 1978'.to_date).to eq 1 }
+      specify { expect(Years.age_where_leapling_legal_birthday_is_1_mar date_of_birth, '22 Sep 1978'.to_date).to eq 2 }
+      specify { expect(Years.age_where_leapling_legal_birthday_is_1_mar date_of_birth, '23 Sep 1978'.to_date).to eq 2 }
 
       it "uses current date when second argument missing" do
         Timecop.freeze '22 Sep 2006'.to_date do
