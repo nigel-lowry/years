@@ -41,7 +41,7 @@ describe Years do
 
   describe ".age_where_leapling_legal_birthday_is_28_feb" do
     let(:date_of_birth) { '29 Feb 2004'.to_date }
-    specify { Years.age_where_leapling_legal_birthday_is_28_feb(date_of_birth, '28 Feb 2005'.to_date).should == 1 }
+    specify { expect(Years.age_where_leapling_legal_birthday_is_28_feb date_of_birth, '28 Feb 2005'.to_date).to eq 1 }
   end
 
   describe ".range" do
