@@ -8,5 +8,6 @@ rvm:
   - 1.9.2
   - 1.8.7
 before_install:
+  - bundle init --gemspec=#{gemspec}
   - gem update --system
   - gem --version
