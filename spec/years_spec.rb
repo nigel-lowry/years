@@ -33,9 +33,9 @@ describe Years do
     context "leap year birthday" do
       let(:date_of_birth) { '29 Feb 2004'.to_date }
 
-      specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '1 Mar 2004'.to_date).should == 0 }
-      specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '28 Feb 2005'.to_date).should == 0 }
-      specify { Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth, '1 Mar 2005'.to_date).should == 1 }
+      specify { expect(Years.age_where_leapling_legal_birthday_is_1_mar date_of_birth, '1 Mar 2004'.to_date).to eq 0 }
+      specify { expect(Years.age_where_leapling_legal_birthday_is_1_mar date_of_birth, '28 Feb 2005'.to_date).to eq 0 }
+      specify { expect(Years.age_where_leapling_legal_birthday_is_1_mar date_of_birth, '1 Mar 2005'.to_date).to eq 1 }
     end
   end
 
