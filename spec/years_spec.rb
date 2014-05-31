@@ -25,7 +25,7 @@ describe Years do
 
       it "uses current date when second argument missing" do
         Timecop.freeze '22 Sep 2006'.to_date do
-          Years.age_where_leapling_legal_birthday_is_1_mar(date_of_birth).should == 30
+          expect(Years.age_where_leapling_legal_birthday_is_1_mar date_of_birth).to eq 30
         end
       end
     end
