@@ -35,14 +35,14 @@ module Years
 private
 
   def self.age date_of_birth, today, legal_leapling_birthday
-    raise unless born_yet? date_of_birth, today
+    raise if unborn? date_of_birth, today
 
     years = today.year - date_of_birth.year
     (birthday(date_of_birth, years, legal_leapling_birthday) > today) ? years - 1 : years
   end
 
-  def self.born_yet? date_of_birth, today
-    today >= date_of_birth
+  def self.unborn? date_of_birth, today
+    today < date_of_birth
   end
 
   def self.birthday date_of_birth, years, legal_leapling_birthday
