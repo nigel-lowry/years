@@ -25,7 +25,7 @@ module Years
   # @param [Fixnum] last_year the last year of the range, defaults to this year
   # @return [String]
   def self.range first_year, last_year=Date.current.year
-    raise if first_year > last_year
+    raise if out_of_sequence? first_year, last_year
     raise if [first_year, last_year].any? { |year| year < 0 }
     raise unless [first_year, last_year].all? { |year| year.is_a? Fixnum }
 
@@ -52,6 +52,10 @@ private
 
   def self.february_29th? date
     date.mday == 29 and date.mon == 2
+  end
+
+  def self.out_of_sequence?(first_year, last_year)
+    first_year > last_year
   end
 
 end
