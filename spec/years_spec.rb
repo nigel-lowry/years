@@ -56,7 +56,6 @@ describe Years do
     specify { expect(Years.range 2010).to eq '2010–2012' }
     specify { expect(Years.range 2011).to eq '2011–2012' }
     specify { expect(Years.range 2012).to eq '2012' }
-    specify { expect(Years.range 2013, 2013).to eq '2013' }
 
     it 'raises error if only year is float' do
       expect { Years.range(2013.1) }.to raise_error
