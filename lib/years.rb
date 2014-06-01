@@ -27,7 +27,7 @@ module Years
   def self.range first_year, last_year=Date.current.year
     raise if out_of_sequence? first_year, last_year
     raise if any_negative? first_year, last_year
-    raise unless [first_year, last_year].all? { |year| year.is_a? Fixnum }
+    raise unless all_fixnum? first_year, last_year
 
     (first_year == last_year) ? first_year.to_s : first_year.to_s + @@EN_DASH + last_year.to_s
   end
@@ -60,6 +60,10 @@ private
 
   def self.any_negative? first_year, last_year
     [first_year, last_year].any? { |year| year < 0 }
+  end
+
+  def self.all_fixnum? first_year, last_year
+    [first_year, last_year].all? { |year| year.is_a? Fixnum }
   end
 
 end
