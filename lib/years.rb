@@ -29,7 +29,7 @@ module Years
     raise if any_negative? first_year, last_year
     raise unless all_fixnum? first_year, last_year
 
-    (first_year == last_year) ? first_year.to_s : first_year.to_s + @@EN_DASH + last_year.to_s
+    (first_year == last_year) ? first_year.to_s : "#{first_year}#{@@EN_DASH}#{last_year}"
   end
 
 private
