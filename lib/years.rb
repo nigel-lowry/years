@@ -26,7 +26,7 @@ module Years
   # @return [String]
   def self.range first_year, last_year=Date.current.year
     raise if out_of_sequence? first_year, last_year
-    raise if [first_year, last_year].any? { |year| year < 0 }
+    raise if any_negative? first_year, last_year
     raise unless [first_year, last_year].all? { |year| year.is_a? Fixnum }
 
     (first_year == last_year) ? first_year.to_s : first_year.to_s + @@EN_DASH + last_year.to_s
@@ -54,8 +54,12 @@ private
     date.mday == 29 and date.mon == 2
   end
 
-  def self.out_of_sequence?(first_year, last_year)
+  def self.out_of_sequence? first_year, last_year
     first_year > last_year
+  end
+
+  def self.any_negative? first_year, last_year
+    [first_year, last_year].any? { |year| year < 0 }
   end
 
 end
