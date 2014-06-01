@@ -25,18 +25,24 @@ module Years
   # @param [Fixnum] last_year the last year of the range, defaults to this year
   # @return [String]
   def self.range first_year, last_year=Date.current.year
-    raise if first_year > last_year
+    raise if out_of_sequence? first_year, last_year
+    raise if any_negative? first_year, last_year
+    raise unless all_fixnum? first_year, last_year
 
-    (first_year == last_year) ? first_year.to_s : first_year.to_s + @@EN_DASH + last_year.to_s
+    (first_year == last_year) ? first_year.to_s : "#{first_year}#{@@EN_DASH}#{last_year}"
   end
 
 private
 
   def self.age date_of_birth, today, legal_leapling_birthday
-    raise if today < date_of_birth
+    raise if unborn? date_of_birth, today
 
     years = today.year - date_of_birth.year
     (birthday(date_of_birth, years, legal_leapling_birthday) > today) ? years - 1 : years
+  end
+
+  def self.unborn? date_of_birth, today
+    today < date_of_birth
   end
 
   def self.birthday date_of_birth, years, legal_leapling_birthday
@@ -50,6 +56,18 @@ private
 
   def self.february_29th? date
     date.mday == 29 and date.mon == 2
+  end
+
+  def self.out_of_sequence? first_year, last_year
+    first_year > last_year
+  end
+
+  def self.any_negative? first_year, last_year
+    [first_year, last_year].any? { |year| year < 0 }
+  end
+
+  def self.all_fixnum? first_year, last_year
+    [first_year, last_year].all? { |year| year.is_a? Fixnum }
   end
 
 end

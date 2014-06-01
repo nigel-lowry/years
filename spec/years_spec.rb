@@ -56,12 +56,46 @@ describe Years do
     specify { expect(Years.range 2010).to eq '2010–2012' }
     specify { expect(Years.range 2011).to eq '2011–2012' }
     specify { expect(Years.range 2012).to eq '2012' }
+    specify { expect(Years.range 2013, 2013).to eq '2013' }
+
+    it 'raises error if only year is float' do
+      expect { Years.range(2013.1) }.to raise_error
+    end
+
+    it 'raises error if first year is float' do
+      expect { Years.range(2013.1, 2014) }.to raise_error
+    end
+
+    it 'raises error if second year is float' do
+      expect { Years.range(2012, 2013.1) }.to raise_error
+    end
+
+    it 'raises error if both years are floats' do
+      expect { Years.range(2013.1, 2014.2) }.to raise_error
+    end
+
+    it 'raises error if only year is negative' do
+      expect { Years.range(-1) }.to raise_error
+    end
+
+    it 'raises error if first year is negative' do
+      expect { Years.range(-1, 0) }.to raise_error
+    end
+
+    it 'raises error if second year is float' do
+      expect { Years.range(0, -1) }.to raise_error
+    end
+
+    it 'raises error if both years are negative' do
+      expect { Years.range(-2, -1) }.to raise_error
+    end
 
     it 'raises error if range would be in future' do
       expect { Years.range(2013) }.to raise_error
     end
 
     specify { expect(Years.range 2011, 2011).to eq '2011' }
+    specify { expect(Years.range 0, 1).to eq '0–1' }
     specify { expect(Years.range 2011, 2012).to eq '2011–2012' }
     specify { expect(Years.range 2011, 2013).to eq '2011–2013' }
     specify { expect(Years.range 2011, 2014).to eq '2011–2014' }
